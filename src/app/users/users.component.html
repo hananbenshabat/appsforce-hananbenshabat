@@ -1,0 +1,8 @@
+<div class="users-container mt-10 mb-10 ml-5 mr-5">
+    <div class="user-details w-5/12 float-right">
+        <app-user-details [selectedUser]="selectedUser" (userSaved)="saveUser($event)" (userCancelled)="resetUser()"></app-user-details>
+    </div>
+    <div class="users-list w-6/12 float-left">
+        <app-users-list [users]="users$ | async" (userSelected)="selectUser($event)" (userDeleted)="deleteUser($event)"></app-users-list>
+    </div>
+</div>

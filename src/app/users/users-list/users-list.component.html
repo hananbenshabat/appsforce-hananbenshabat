@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> Users List </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let user of users" (click)="selectUser(user)">
+                <img class="float-left" [src]="user.picture['medium']" />
+                <h3 matLine>
+                    {{ user.name["title"] + ". " + user.name["first"] + " " + user.name["last"] | titlecase }}
+                </h3>
+                <p matLine>
+                    {{ user.location["street"]["name"] + " " + user.location["street"]["number"] + ", " + user.location["city"] + ", " + user.location["country"] }}
+                </p>
+                <p matLine>
+                    {{ user.email }}
+                </p>
+                <button mat-icon-button color="warn" (click)="deleteUser(user.email); $event.stopImmediatePropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

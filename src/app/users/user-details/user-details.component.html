@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-title>
+        <span *ngIf="currentUser.email; else elseBlock">
+      {{ originalEmail | titlecase }}
+    </span>
+        <ng-template id="selectedUser" #elseBlock> Create a new User </ng-template>
+    </mat-card-title>
+    <form #form="ngForm" (submit)="saveUser(currentUser)">
+        <mat-card-content>
+            <mat-form-field class="w-2/12">
+                <mat-label>Title</mat-label>
+                <mat-select [(value)]="currentUser.name['title']" name="title" required>
+                    <mat-option value="Mr">Mr</mat-option>
+                    <mat-option value="Mrs">Mrs</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="w-4/12">
+                <textarea matInput placeholder="First Name" [(ngModel)]="currentUser.name['first']" type="text" name="first" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-6/12">
+                <textarea matInput placeholder="Last Name" [(ngModel)]="currentUser.name['last']" type="text" name="last" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-6/12">
+                <textarea matInput placeholder="Street" [(ngModel)]="
+            currentUser.location['street'['name']] +
+            ' ' +
+            currentUser.location['street'['number']]
+          " type="text" name="street" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-3/12">
+                <textarea matInput placeholder="City" [(ngModel)]="currentUser.location['city']" type="text" name="city" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-3/12">
+                <textarea matInput placeholder="Country" [(ngModel)]="currentUser.location['country']" type="text" name="country" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Email" [(ngModel)]="currentUser.email" type="text" name="email" required></textarea>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button [disabled]="form.invalid" type="submit" mat-button color="primary">
+        Save
+      </button>
+            <button type="button" mat-button (click)="form.reset()">Cancel</button>
+        </mat-card-actions>
+    </form>
+</mat-card>
